@@ -6,7 +6,7 @@ interface CacheItem<T> {
 
 export class CacheManager {
   private static CACHE_PREFIX = 'github_explorer_';
-  private static DEFAULT_EXPIRY = 5 * 60 * 1000; // 5 minutes
+  private static DEFAULT_EXPIRY = 2 * 60 * 1000; // 2 minutes
 
   static set<T>(key: string, data: T, expiresIn: number = this.DEFAULT_EXPIRY): void {
     const item: CacheItem<T> = {

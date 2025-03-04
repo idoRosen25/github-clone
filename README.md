@@ -8,10 +8,30 @@ A React-based web application that enables users to explore GitHub repositories 
 - **Data Management**: 
   - React Query for API data fetching and caching
   - Zustand for application state management
+  - Local Storage for client-side caching
 - **Routing**: React Router v6
 - **HTTP Client**: Axios
 - **API**: GitHub REST API v3
 - **Styling**: Pure CSS with modern features
+
+## Caching Mechanism
+
+The application implements a sophisticated client-side caching system to optimize performance and reduce API calls:
+
+- **Local Storage Cache**: 
+  - API responses are cached in the browser's localStorage
+  - Each cache entry includes data, timestamp, and expiration time
+  - Default cache duration is 2 minutes
+
+- **Request Deduplication**:
+  - Prevents duplicate API calls for the same data
+  - Concurrent requests for the same resource share a single API call
+  - Automatically cleans up completed requests
+
+- **Cache Invalidation**:
+  - Automatic expiration after configured duration
+  - Different expiration times for different types of data
+  - Expired cache entries are automatically removed
 
 ## Prerequisites
 
@@ -52,3 +72,4 @@ Additional commands:
 - Responsive design for all screen sizes
 - Infinite scroll for repository list
 - Persistent search state across navigation
+- Smart caching system for improved performance
