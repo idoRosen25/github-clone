@@ -11,11 +11,11 @@ const ContributorsList: React.FC<ContributorsListProps> = ({ contributors }) => 
 
   return (
     <div className="repository-page-contributors">
-      <h2>Top Contributors</h2>
+      <h3>Top Contributors</h3>
       <div className="contributors-list">
         {contributors.map(contributor => (
           <ContributorItem 
-            key={contributor.login} 
+            key={contributor.id} 
             contributor={contributor} 
           />
         ))}

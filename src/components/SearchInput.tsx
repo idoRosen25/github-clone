@@ -1,19 +1,24 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSearchStore } from '../store';
+import { debounce } from '../utils';
 import '../styles/SearchInput.css';
 
 const SearchInput: React.FC = () => {
   const { searchTerm, setSearchTerm } = useSearchStore();
   const [inputValue, setInputValue] = useState(searchTerm);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    setSearchTerm(inputValue.trim());
-  }, [inputValue, setSearchTerm]);
+  const debouncedSetSearch = useCallback(
+    debounce((value: string) => {
+      setSearchTerm(value.trim());
+    }, 500),
+    [setSearchTerm]
+  );
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  }, []);
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedSetSearch(value);
+  }, [debouncedSetSearch]);
 
   const handleClear = useCallback(() => {
     setInputValue('');
@@ -21,7 +26,7 @@ const SearchInput: React.FC = () => {
   }, [setSearchTerm]);
 
   return (
-    <form className="search-container" onSubmit={handleSubmit}>
+    <div className="search-container">
       <input
         type="text"
         className="search-input"
@@ -39,7 +44,7 @@ const SearchInput: React.FC = () => {
           ×
         </button>
       )}
-    </form>
+    </div>
   );
 };
 
