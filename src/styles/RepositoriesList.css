@@ -1,0 +1,37 @@
+.repositories-grid {
+  width: 100%;
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  grid-template-columns: 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Small devices (tablets, 640px and up) */
+@media (min-width: 640px) {
+  .repositories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Medium devices (laptops, 768px and up) */
+@media (min-width: 768px) {
+  .repositories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  .repositories-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.load-more {
+  width: 100%;
+  padding: 2rem 0;
+  text-align: center;
+  grid-column: 1 / -1;
+} 
